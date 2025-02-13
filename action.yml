@@ -1,0 +1,19 @@
+name: 'Google Drive Upload Action (Python)'
+description: 'Uploads a file to Google Drive using a Service Account and outputs the file ID.'
+author: 'Iori Yanokura'
+inputs:
+  service_account_json:
+    description: 'Base64-encoded service account JSON credentials.'
+    required: true
+  file_path:
+    description: 'Path of the file to upload.'
+    required: true
+outputs:
+  file_id:
+    description: 'The ID of the uploaded file on Google Drive.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  color: 'blue'
+  icon: 'upload'
