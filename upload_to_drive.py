@@ -11,6 +11,7 @@ def main():
     service_account_json_base64 = os.environ.get("INPUT_SERVICE_ACCOUNT_JSON")
     file_path = os.environ.get("INPUT_FILE_PATH")
     folder_id = os.environ.get("INPUT_FOLDER_ID", "").strip()
+    gdrive_file_name = os.environ.get("INPUT_GDRIVE_FILE_NAME", "").strip()
 
     if not service_account_json_base64:
         print("Error: 'service_account_json' is not provided.")
@@ -24,8 +25,9 @@ def main():
     creds = Credentials.from_service_account_info(service_account_info, scopes=["https://www.googleapis.com/auth/drive.file"])
     drive_service = build("drive", "v3", credentials=creds)
 
+    file_name = gdrive_file_name if gdrive_file_name else os.path.basename(file_path)
     file_metadata = {
-        "name": os.path.basename(file_path)  # Name on Google Drive
+        "name": file_name # Name on Google Drive
     }
     if folder_id:
         file_metadata["parents"] = [folder_id]

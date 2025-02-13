@@ -8,6 +8,9 @@ inputs:
   file_path:
     description: 'Path of the file to upload.'
     required: true
+  input_gdrive_file_name:
+    description: 'The name of the file when uploaded to Google Drive (optional).'
+    required: false
 outputs:
   file_id:
     description: 'The ID of the uploaded file on Google Drive.'
